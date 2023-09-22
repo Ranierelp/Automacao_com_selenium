@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
-from decouple.decouple import config
+from decouple import config
 from reportlab.lib.pagesizes import A4
 from reportlab.platypus import (SimpleDocTemplate, Table, TableStyle, Paragraph, Frame, PageTemplate, NextPageTemplate)
 from reportlab.lib.styles import getSampleStyleSheet
@@ -224,5 +224,9 @@ def automocaao_email():
         quantidade_disciplina += 1
     teardown()
     criar_PDF(relatorio,nome_arquivo_pdf, quantidade_uas)
+    print(diretorio_atual)
+    print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    print(os.path.exists(caminho_imagem_papel_timbrado))
+
 
 automocaao_email()
