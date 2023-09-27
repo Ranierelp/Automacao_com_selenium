@@ -32,8 +32,9 @@ campo_senha = (By.ID, "password")
 login_button = (By.ID, "loginbtn")
 
 diretorio_atual = os.path.dirname(__file__)
-nome_arquivo_pdf = os.path.join(diretorio_atual, "relatorio.pdf")
-caminho_imagem_papel_timbrado = os.path.join(diretorio_atual, "stylefolha", "Timbrado UNIFIP 2.png")
+desktop_path = os.path.join(os.path.expanduser('~'), 'Desktop')
+nome_arquivo_pdf = os.path.join(desktop_path, "relatorio.pdf")
+caminho_imagem_papel_timbrado = os.path.join(diretorio_atual, "Papel_timbrado", "Timbrado_UNIFIP_2.png")
 
 def fazerLogin(usuario, senha):   
         
@@ -150,8 +151,7 @@ def automocaao_email():
     fazerLogin(user, password)
 
     meu_email = MailBox("imap.gmail.com").login(email_, senha)
-    data_inicial = date(2023,8,11)
-    lista_email = meu_email.fetch(AND(from_ = "no-reply@grupoa.education", text="23.2 aprovada ", date_gte = data_inicial,seen=False))
+    lista_email = meu_email.fetch(AND(from_ = "no-reply@grupoa.education", text="23.2 aprovada ", seen=False))
 
     quantidade_disciplina = 0
     quantidade_uas = 0
@@ -224,9 +224,5 @@ def automocaao_email():
         quantidade_disciplina += 1
     teardown()
     criar_PDF(relatorio,nome_arquivo_pdf, quantidade_uas)
-    print(diretorio_atual)
-    print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-    print(os.path.exists(caminho_imagem_papel_timbrado))
-
 
 automocaao_email()
